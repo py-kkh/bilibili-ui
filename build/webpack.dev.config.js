@@ -14,7 +14,7 @@ module.exports = merge(baseConfig, {
   devtool: 'inline-source-map',
   devServer: {
     quiet: true, // webpack 隐藏打包信息
-    hot: true,
+    hot: true, // 热重载
     watchOptions: {
       poll: true
     },

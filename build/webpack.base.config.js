@@ -5,6 +5,7 @@
 
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const { resolve } = require('./utils')
 module.exports = {
@@ -24,6 +25,13 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
+        test: /\.(vue|js)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre', // 确保它是作为一个 pre-loader
+        include: [resolve('src')],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.less$/,
         use: [
           'vue-style-loader',
@@ -39,10 +47,25 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ]
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 5000,
+              // 分离图片至imgs文件夹
+              name: "imgs/[name].[ext]",
+            }
+          },
+        ]
+      },
     ]
   },
   plugins: [
     new VueLoaderPlugin(),
+    // TODO 友好的错误提示
+    new FriendlyErrorsWebpackPlugin(),
   ],// 插件
 };

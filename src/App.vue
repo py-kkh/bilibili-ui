@@ -1,12 +1,17 @@
 <template>
   <div id="app">
     hello world
+    <button></button>
   </div>
 </template>
 
 <script>
+import Button from './components/button/index.vue'
 export default {
-  name: 'app'
+  name: 'App',
+  components: {
+    Button
+  }
 }
 </script>
 
