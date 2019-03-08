@@ -4,6 +4,7 @@
     "dev": "webpack-dev-server --inline --progress --mode development --config build/webpack.dev.config.js --host 0.0.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
     "babel-eslint": "^10.0.1",
     "css-loader": "^2.1.1",
     "eslint": "^5.15.1",

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
     hello world
-    <button></button>
+    <my-button>1</my-button>
   </div>
 </template>
 
 <script>
-import Button from './components/button/index.vue'
+import MyButton from './components/button/index.vue'
 export default {
   name: 'App',
   components: {
-    Button
+    MyButton
   }
 }
 </script>
