@@ -1,8 +1,6 @@
 # k-on-ui
 
-test update2
-
-## todo
+## rules
 
 > 有更好的形式请务必提出来。
 
@@ -14,6 +12,8 @@ example: button + coder
 
 progress in ['todo', 'doing', 'end']
 
+组件的样式，不做风格限制，可按喜欢的来。
+
 组件文件组织格式
 
 - componentName
@@ -24,56 +24,6 @@ progress in ['todo', 'doing', 'end']
 
 分支管理就 Git flow 。开发完发 pr 至 master 需 2 人 review 才可 merge
 
-_个人的小心愿，文档或者是组件中，大量出现这五种颜色_
+## todo-list
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style>
-      .yui {
-        border-color: #794c23;
-      }
-      .mio {
-        border-color: #2c2b29;
-      }
-
-      .ritsu {
-        border-color: #8d6427;
-      }
-
-      .mugi {
-        border-color: #e5c58f;
-      }
-
-      .azusa {
-        border-color: #353340;
-      }
-      .container {
-        display: flex;
-      }
-
-      .item {
-        margin: 15px;
-        width: 40px;
-        height: 30px;
-        border-width: 1px;
-        border-style: solid;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="item yui"></div>
-      <div class="item mio"></div>
-      <div class="item ritsu"></div>
-      <div class="item mugi"></div>
-      <div class="item azusa"></div>
-    </div>
-  </body>
-</html>
-```
+button by yui
