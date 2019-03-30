@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import MyButton from './components/button/index.vue'
+import MyButton from './components/button/index'
 export default {
   name: 'App',
   components: {

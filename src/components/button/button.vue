@@ -1,20 +1,17 @@
 <template>
-  <div :class="btnClass">
-    buttonf
-  </div>
+  <div :class="btnClass">buttonf</div>
 </template>
 <script>
 export default {
-  name: "MyButton",
+  name: 'MyButton',
   computed: {
     btnClass() {
       return {
         loading: false,
         disabled: false
-      };
+      }
     }
   },
-  mounted() {},
-};
+  mounted() {}
+}
 </script>
-
