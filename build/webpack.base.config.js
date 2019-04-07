@@ -10,7 +10,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const { resolve } = require('./utils')
 module.exports = {
   entry: {
-    app: [resolve('src/index.js')] //入口
+    app: [resolve('example/main.js')] //入口
   },
   output: {
     path: resolve('dist'),

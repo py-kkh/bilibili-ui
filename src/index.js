@@ -1,11 +1,29 @@
-import Vue from 'vue'
-import App from './App.vue'
-console.log(App)
+import Button from './components/button'
 
-const a = e => console.log(e)
-a(2)
+const components = {
+  Button
+}
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+const bili = {
+  ...components,
+  bButton: Button
+}
+
+const install = Vue => {
+  Object.keys(bili).forEach(key => {
+    Vue.component(key, bili[key])
+  })
+}
+
+// auto install
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+const API = {
+  install,
+  ...components
+}
+
+export default API
+// module.exports.default = module.exports = API
