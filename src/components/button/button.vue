@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  name: 'MyButton',
+  name: 'BiliButton',
   computed: {
     btnClass() {
       return {

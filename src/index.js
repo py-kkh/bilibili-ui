@@ -1,17 +1,8 @@
-import Button from './components/button'
-
-const components = {
-  Button
-}
-
-const bili = {
-  ...components,
-  bButton: Button
-}
+import * as biliComponents from './components'
 
 const install = Vue => {
-  Object.keys(bili).forEach(key => {
-    Vue.component(key, bili[key])
+  Object.values(biliComponents).forEach(biliComponent => {
+    Vue.use(biliComponent)
   })
 }
 
@@ -20,10 +11,4 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-const API = {
-  install,
-  ...components
-}
-
-export default API
-// module.exports.default = module.exports = API
+export default install

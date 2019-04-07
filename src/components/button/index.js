@@ -1,3 +1,5 @@
-import Button from './button.vue'
+import biliComponent from './button.vue'
 
-export default Button
+export default Vue => {
+  Vue.component(biliComponent.name, biliComponent)
+}
