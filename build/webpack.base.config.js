@@ -3,7 +3,6 @@
  * 存放 dev 和 prod 通用配置
  */
 
-const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 

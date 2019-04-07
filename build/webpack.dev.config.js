@@ -2,11 +2,11 @@
  * webpack.dev.config.js
  * 存放 dev 配置
  */
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const baseConfig = require('./webpack.base.config');
+const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const baseConfig = require('./webpack.base.config')
 const { resolve } = require('./utils')
 
 module.exports = merge(baseConfig, {
@@ -18,18 +18,22 @@ module.exports = merge(baseConfig, {
     watchOptions: {
       poll: true
     },
+    overlay: {
+      warnings: true,
+      errors: true
+    },
     compress: true, // gzip 压缩
     open: false,
     host: 'localhost',
     port: 2333,
-    contentBase: resolve('dist'),
+    contentBase: resolve('dist')
     // publicPath: resolve('public'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: resolve('public/index.html'),
-      inject: true,
-    }),
-  ],
+      inject: true
+    })
+  ]
 })
