@@ -1,5 +1,8 @@
 import * as biliComponents from './components'
 
+import './styles/fonts/iconfont.css'
+import './styles/bili.less'
+
 const install = Vue => {
   Object.values(biliComponents).forEach(biliComponent => {
     Vue.use(biliComponent)
