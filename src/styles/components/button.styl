@@ -1,0 +1,36 @@
+/*button*/
+
+$bili-btn--padding-x := 10px;
+$bili-btn--padding-y := 20px;
+$bili-btn--border-radius := 5px;
+
+.bili-btn {
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  border: 0px;
+  border-radius: $bili-radius;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.bili-btn-text
+  color getColor(primary)
+  &:hover
+    box-shadow: 0px 9px 28px -9px
+
+
+.bili-btn-filled
+  font-size 20px;
+  &:hover
+    box-shadow: 0px 9px 28px -9px
+
+for colorx, i in $bili-colors 
+  .bili-btn-{colorx}
+    // type filled style
+    &.bili-btn-filled
+      background: getColor(colorx) !important
+      &:hover
+        box-shadow: 0px 8px 25px -8px getColor(colorx)

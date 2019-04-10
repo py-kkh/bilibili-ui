@@ -1,10 +1,20 @@
 <template>
   <div>
-    <bili-button>(ง •̀_•́)</bili-button>
-    <bili-button>(ง •̀_•́)2</bili-button>
-    <bili-button>(ง •̀_•́)3</bili-button>
-    <bili-button>(ง •̀_•́)4</bili-button>
-    <bili-button>(ง •̀_•́)5</bili-button>
+    <h2>color</h2>
+    <bili-button color="primary">(ง •̀_•́)</bili-button>
+    <bili-button color="warning">(ง •̀_•́)</bili-button>
+    <bili-button color="error">(ง •̀_•́)</bili-button>
+    <bili-button color="disbaled">(ง •̀_•́)</bili-button>
+    <bili-button color="text">(ง •̀_•́)</bili-button>
+    <br>
+    <br>
+    <h2>type</h2>
+    <bili-button color="primary" type="filled">(ง •̀_•́)</bili-button>
+    <bili-button color="primary" type="border">(ง •̀_•́)</bili-button>
+    <bili-button color="warning" type="flat">(ง •̀_•́)</bili-button>
+    <bili-button color="error" type="line">(ง •̀_•́)</bili-button>
+    <bili-button color="disbaled" type="gradient">(ง •̀_•́)</bili-button>
+    <bili-button color="text" type="relief">(ง •̀_•́)</bili-button>
     <span class="iconfont icon-wucan"></span>
   </div>
 </template>

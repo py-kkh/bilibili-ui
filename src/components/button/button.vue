@@ -1,9 +1,8 @@
 <template>
   <button
     ref="btn"
-    class="bili-button"
     name="button"
-    :class="[{
+    :class="[`bili-btn-${type}`,{
       'isActive':isActive,
       'includeIcon':icon,
       'includeIconOnly':icon && !$slots.default,
@@ -35,13 +34,13 @@
       class="vs-button--icon"
     ></vs-icon>-->
 
-    <span v-if="$slots.default" class="vs-button-text vs-button--text">
+    <span v-if="$slots.default" class="bili-btn-text-s bili-btn--text-s">
       <slot/>
     </span>
 
-    <span ref="linex" :style="styleLine" class="vs-button-linex"/>
+    <!-- type === line 时的动画元素 -->
+    <span ref="linex" :style="styleLine" class="bili-btn-linex"/>
   </button>
-  <!-- <div :class="btnClass">buttonf</div> -->
 </template>
 <script>
 import { oneOf, getColor } from '../../utils/helper'
@@ -65,22 +64,10 @@ export default {
     },
     // 按钮主题
     color: {
-      default: 'default',
+      default: 'primary',
       validator(value) {
-        return oneOf(value, [
-          'default',
-          'primary',
-          'warning',
-          'error',
-          'disbaled',
-          'text'
-        ])
+        return oneOf(value, ['primary', 'warning', 'error', 'disbaled', 'text'])
       }
-    },
-    // 供改变按钮文本颜色的api
-    textColor: {
-      default: null,
-      type: String
     },
     // 按钮大小
     size: {
@@ -108,7 +95,7 @@ export default {
       type: Boolean
     },
     // type == line 时 active 样式出现的起点
-    lineOrigin: {
+    leftPosition: {
       default: 'center',
       validator(value) {
         return oneOf(value, ['left', 'center', 'right'])
@@ -124,18 +111,19 @@ export default {
   },
   data() {
     return {
-      isActive: false
+      isActive: false,
+      isHover: false
     }
   },
   computed: {
     // 透传事件
     listeners() {
       return {
-        ...this.$listeners
+        ...this.$listeners,
+        mouseover: event => this.mouseoverx(event),
+        mouseout: event => this.mouseoutx(event)
         // click: event => this.clickButton(event),
         // blur: event => this.blurButton(event),
-        // mouseover: event => this.mouseoverx(event),
-        // mouseout: event => this.mouseoutx(event)
       }
     },
     // class
@@ -150,36 +138,47 @@ export default {
     },
     // style 主要是几种特效
     styles() {
-      let ret = null
+      let ret
       if (this.type === 'filled') {
-        ret = {
-          color: getColor(this.textColor, 1),
-          background: getColor(this.color, 1),
-          boxShadow: this.hoverx
-            ? `0px 8px 25px -8px ${getColor(this.color, 1)}`
-            : null
-        }
+        // 无需操作
       }
       return ret
     },
     styleLine() {
-      let lineOrigin = '50%'
-      if (this.lineOrigin == 'left') {
-        lineOrigin = '0%'
-      } else if (this.lineOrigin == 'right') {
-        lineOrigin = 'auto'
+      // 默认即是 center
+      let leftPosition = '50%'
+      if (this.leftPosition == 'left') {
+        leftPosition = '0%'
+      } else if (this.leftPosition == 'right') {
+        leftPosition = 'auto'
       }
       let styles = {
         top: this.linePosition == 'top' ? '-2px' : 'auto',
         bottom: this.linePosition == 'bottom' ? '-2px' : 'auto',
         background: getColor(this.color, 1),
-        left: lineOrigin,
-        right: lineOrigin == 'auto' ? '0px' : null,
-        transform: lineOrigin == '50%' ? 'translate(-50%)' : null
+        left: leftPosition,
+        right: leftPosition == 'auto' ? '0px' : null,
+        transform: leftPosition == '50%' ? 'translate(-50%)' : null
       }
       return styles
     }
   },
-  mounted() {}
+  mounted() {
+    console.log('----------------')
+    console.log(this.type)
+  },
+  methods: {
+    mouseoverx(event) {
+      console.log('--------22--------')
+      console.log(event)
+
+      this.$emit('mouseover', event)
+      this.isHover = true
+    },
+    mouseoutx(event) {
+      this.$emit('mouseout', event)
+      this.isHover = false
+    }
+  }
 }
 </script>

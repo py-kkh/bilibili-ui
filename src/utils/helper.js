@@ -34,6 +34,7 @@ export function getColor(colorx, alphax = 1, defaultx = true) {
       colorx = colorx.replace(/\)$/, `,${alphax})`)
     }
   }
+  // 未匹配 规则直接返回
   return colorx
 }
 
