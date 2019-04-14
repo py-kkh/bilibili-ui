@@ -2,11 +2,11 @@
   <button
     ref="btn"
     name="button"
-    :class="[`bili-btn-${type}`,{
+    :class="[`bili-button-${type}`,{
       'isActive':isActive,
       'includeIcon':icon,
       'includeIconOnly':icon && !$slots.default,
-      'vs-radius':radius
+      'bili-radius':radius
     }, size,classes]"
     :style="[styles,{
       'width':/[px]/.test(size)?`${size}`:null,
@@ -15,42 +15,23 @@
     v-bind="$attrs"
     v-on="listeners"
   >
-    <!-- <span
-      v-if="!is('line')&&!is('gradient')&&!is('relief')"
-      ref="backgroundx"
-      :style="stylesBackGround"
-      class="vs-button-backgroundx vs-button--background"
-    ></span>-->
-
-    <!-- <vs-icon
-      v-if="icon"
-      :style="{
-        'order':iconAfter?2:0,
-        'margin-right':$slots.default&&!iconAfter?'5px':'0px',
-        'margin-left':$slots.default&&iconAfter?'5px':'0px'
-      }"
-      :icon-pack="iconPack"
-      :icon="icon"
-      class="vs-button--icon"
-    ></vs-icon>-->
-
-    <span v-if="$slots.default" class="bili-btn-text-s bili-btn--text-s">
+    <span v-if="$slots.default" class="bili-button-text-s">
       <slot/>
     </span>
 
     <!-- type === line 时的动画元素 -->
-    <span ref="linex" :style="styleLine" class="bili-btn-linex"/>
+    <span ref="linex" :style="styleLine" class="bili-button-linex"/>
   </button>
 </template>
 <script>
 import { oneOf, getColor } from '../../utils/helper'
-const prefixCls = 'bili-btn'
+const prefixCls = 'bili-button'
 export default {
   name: 'BiliButton',
   props: {
     // 动效类型
     type: {
-      default: 'filled',
+      default: 'border',
       validator(value) {
         return oneOf(value, [
           'filled',
@@ -64,10 +45,13 @@ export default {
     },
     // 按钮主题
     color: {
-      default: 'primary',
-      validator(value) {
-        return oneOf(value, ['primary', 'warning', 'error', 'disbaled', 'text'])
-      }
+      type: String,
+      default: 'primary'
+    },
+    // 文字颜色
+    textColor: {
+      default: null,
+      type: String
     },
     // 按钮大小
     size: {
@@ -78,11 +62,6 @@ export default {
     icon: {
       type: String,
       default: null
-    },
-    // 使用的图标库的 前缀
-    iconPack: {
-      type: String,
-      default: 'iconfont'
     },
     // 图标在文字前还是文字后，true 为后
     iconAfter: {
@@ -136,11 +115,29 @@ export default {
         }
       ]
     },
-    // style 主要是几种特效
+    // style 主要是几种特效, 为css中未定义的颜色提供对应的效果
     styles() {
       let ret
       if (this.type === 'filled') {
-        // 无需操作
+        // 提供自定义 背景色 和 文字色功能，用以覆盖 css
+        return {
+          color: getColor(this.textColor, 1),
+          background: getColor(this.color, 1),
+          boxShadow: this.isHover
+            ? `0px 8px 25px -8px ${getColor(this.color, 1)}`
+            : null
+        }
+      }
+
+      if (this.type === 'border' || this.type === 'flat') {
+        return {
+          border: `${this.type === 'flat' ? 0 : 1}px solid ${getColor(
+            this.color,
+            1
+          )}`,
+          background: this.isHover ? getColor(this.color, 0.1) : 'transparent',
+          color: getColor(this.textColor, 1) || getColor(this.color, 1)
+        }
       }
       return ret
     },
@@ -163,15 +160,9 @@ export default {
       return styles
     }
   },
-  mounted() {
-    console.log('----------------')
-    console.log(this.type)
-  },
+  mounted() {},
   methods: {
     mouseoverx(event) {
-      console.log('--------22--------')
-      console.log(event)
-
       this.$emit('mouseover', event)
       this.isHover = true
     },

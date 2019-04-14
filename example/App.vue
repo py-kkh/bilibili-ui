@@ -1,7 +1,10 @@
-<style lang="less">
-// @import '../src/styles/index.less';
+<style lang="styl">
+body {
+  font-size: 15px;
+}
 </style>
 <style lang="less" scoped>
+// @import '../src/styles/index.less';
 nav {
   margin-bottom: 40px;
 

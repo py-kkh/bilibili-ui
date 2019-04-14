@@ -15,7 +15,7 @@ export function oneOf(value, validList) {
 export function getColor(colorx, alphax = 1, defaultx = true) {
   // 16进制字节 转 rgb
   if (/^[#]/.test(colorx)) {
-    let c = this.hexToRgb(colorx)
+    let c = hexToRgb(colorx)
     colorx = `rgba(${c.r},${c.g},${c.b},${alphax})`
   }
   // rgba
