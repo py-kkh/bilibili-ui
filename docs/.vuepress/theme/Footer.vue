@@ -4,7 +4,7 @@
       <svg class="svg-piso" xmlns="http://www.w3.org/2000/svg" viewBox="4209.3 4660 1514.932 404">
         <defs>
         </defs>
-        <path id="Path_1901" fill="#6cf" data-name="Path 1901" class="cls-1-piso" d="M-77.7,67.7s180-205.4,964-48,501.3-84,501.3-84l20.4,404H0Z" transform="translate(4287 4724.3)"/>
+        <path id="Path_1901" fill="#00a1d6" data-name="Path 1901" class="cls-1-piso" d="M-77.7,67.7s180-205.4,964-48,501.3-84,501.3-84l20.4,404H0Z" transform="translate(4287 4724.3)"/>
       </svg>
 
     <div class="con-links">
@@ -166,7 +166,6 @@ footer.footerx_theme {
   width: 112%;
   z-index: 10;
 }
-
 
 @media (max-width: $MQMobile) {
   .con-copy {

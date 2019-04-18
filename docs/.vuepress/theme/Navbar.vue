@@ -6,7 +6,6 @@
         <div class="con-logo">
           <img class="logo" v-if="$site.themeConfig.logo" :src="$withBase($site.themeConfig.logo)">
         </div>
-        <span class="site-name" v-if="$siteTitle" :class="{ 'can-hide': $site.themeConfig.logo }"></span>
       </router-link>
       <div :class="{'linksColor':!$page.frontmatter.home}" class="links">
         <NavLinks class="can-hide"/>
@@ -161,14 +160,6 @@ export default {
   .logo {
     height: $navbarHeight - 0.7rem;
     vertical-align: top;
-  }
-
-  .site-name {
-    font-size: 1.3rem;
-    display: none;
-    font-weight: 600;
-    color: $textColor;
-    position: relative;
   }
 
   .links {
