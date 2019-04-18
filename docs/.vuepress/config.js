@@ -1,6 +1,15 @@
 module.exports = {
   base: '/bilibili/',
-  head: [['link', { rel: 'icon', href: `/favicon-bili.png` }]],
+  head: [
+    ['link', { rel: 'icon', href: `/favicon-bili.png` }],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: `https://fonts.googleapis.com/icon?family=Material+Icons`
+      }
+    ]
+  ],
   docsDir: 'docs',
   host: 'localhost',
   port: 2233,

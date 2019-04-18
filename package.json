@@ -36,7 +36,9 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "nprogress": "^0.2.0",
     "vue": "^2.6.8",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "vuecode.js": "0.0.27"
   }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<title>vuecode demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vuecode.js/dist/vuecode.umd.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/vuecode.js/dist/vuecode.css" />
+
+<div id="app">
+  <vuecode title="Add new proyect vuecode">
+    <div slot="demo">
+      <button class="btn" type="button" name="button">Example</button>
+    </div>
+
+    <div slot="code">
+      ```js{1,6} var btn = document.querySelector('.btn') btn.addEventListener(
+      'click' , function(){ console.log('click') }) ``/`
+    </div>
+  </vuecode>
+</div>
+
+<script>
+  new Vue({}).$mount('#app')
+</script>
