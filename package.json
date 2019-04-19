@@ -3,7 +3,8 @@
     "start": "npm run dev",
     "dev": "webpack-dev-server --inline --progress --mode development --config build/webpack.dev.config.js --host 0.0.0.0",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docs:deploy": "sh deploy.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

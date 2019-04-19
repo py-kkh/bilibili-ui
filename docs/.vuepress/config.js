@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/bilibili/',
+  base: '/bilibili-ui/',
   head: [
     ['link', { rel: 'icon', href: `/favicon-bili.png` }],
     [
