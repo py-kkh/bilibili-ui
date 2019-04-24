@@ -45,7 +45,7 @@ module.exports = {
         title: 'Components',
         collapsable: false,
         children: [
-          '/components/'
+          '/components/button'
           /*New Component*/
         ]
       }

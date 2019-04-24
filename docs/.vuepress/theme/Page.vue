@@ -335,6 +335,7 @@ function find(page, items, offset) {
       padding: 10px;
       border-radius: 10px;
       margin-top: 6px;
+      line-height: 1.4em;
     }
 
     h1 {

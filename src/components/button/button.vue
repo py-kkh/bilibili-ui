@@ -4,8 +4,6 @@
     name="button"
     :class="[`bili-button-${type}`,{
       'isActive':isActive,
-      'includeIcon':icon,
-      'includeIconOnly':icon && !$slots.default,
       'bili-radius':radius
     }, size,classes]"
     :style="[styles,{
@@ -57,16 +55,6 @@ export default {
     size: {
       type: String,
       default: null
-    },
-    // 图标
-    icon: {
-      type: String,
-      default: null
-    },
-    // 图标在文字前还是文字后，true 为后
-    iconAfter: {
-      default: false,
-      type: Boolean
     },
     // true 时 为 圆按钮
     radius: {

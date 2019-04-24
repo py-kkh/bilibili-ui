@@ -29,9 +29,6 @@ div[id*='carbonads'] {
 }
 
 div[id*='carbonads'] {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-    sans-serif;
   display: block;
   overflow: hidden;
   max-width: calc(100% - 10px);

@@ -3,7 +3,7 @@ body {
   font-size: 15px;
 }
 </style>
-<style lang="less" scoped>
+<style lang="styl" scoped>
 // @import '../src/styles/index.less';
 nav {
   margin-bottom: 40px;
