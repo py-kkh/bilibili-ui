@@ -27,9 +27,7 @@
 <script>
 export default {
   data() {
-    return {
-      a: 1
-    }
+    return {}
   },
   methods: {}
 }
