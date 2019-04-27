@@ -1,10 +1,9 @@
-/*button*/
+/* button */
+$bili-btn--padding-x ?= 10px;
+$bili-btn--padding-y ?= 20px;
+$bili-btn--border-radius ?= 5px;
 
-$bili-btn--padding-x := 10px;
-$bili-btn--padding-y := 20px;
-$bili-btn--border-radius := 5px;
-
-.bili-button
+.bili-button {
   position: relative;
   overflow: hidden;
   padding: 10px;
@@ -14,45 +13,107 @@ $bili-btn--border-radius := 5px;
   background: transparent;
   color: #fff;
   cursor: pointer;
-  &:disabled
-    opacity $bili-disabled-opacity
-    cursor: default
-    pointer-events: none
-  &.bili-radius
-    border-radius: 50%
 
-.bili-button-filled
-  &:hover
-    box-shadow: 0px 9px 28px -9px
+  &:disabled {
+    opacity: $bili-disabled-opacity;
+    cursor: default;
+    pointer-events: none;
+  }
 
-&.bili-button-border
+  &.bili-radius {
+    border-radius: 50%;
+  }
+}
+
+.bili-button--text {
+  position: relative;
+  display: inline-block;
+  transition: $bili-transition;
+}
+
+.bili-button-filled {
+  &:hover {
+    box-shadow: 0px 9px 28px -9px;
+  }
+}
+
+.bili-button-border {
   padding: 9px;
+}
 
-&.bili-button-flat //type flat
-  border: none !important
+.bili-button-flat { // type flat
+  border: none !important;
+}
 
-&.bili-button-border,
-&.bili-button-flat
-  &.isActive
-    .bili-button--text,.bili-button--icon
-      color: rgb(255, 255, 255) !important
+.bili-button-border, .bili-button-flat {
+  &.isActive {
+    .bili-button--text {
+      color: rgb(255, 255, 255) !important;
+    }
+  }
+}
 
+.bili-button-line {
+  padding: 9px 10px;
+  border-radius: 0px;
+  overflow: visible;
+  border-style: solid;
 
-for colorx, i in $bili-colors 
-  .bili-button-{colorx}
+  &:hover {
+    .bili-button--text {
+      transform: translate(0, 2px);
+    }
+
+    .bili-button-linex {
+      width: 100%;
+    }
+  }
+
+  .bili-button-linex {
+    position: absolute;
+    left: 0px;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    transition: all 0.2s ease;
+  }
+}
+
+for colorx, i in $bili-colors {
+  .bili-button-{colorx} {
     // type filled style
-    &.bili-button-filled
-      background: getColor(colorx) !important
-      &:hover
-        box-shadow: 0px 8px 25px -8px getColor(colorx)
-    //type border & flat
-    &.bili-button-border,
-    &.bili-button-flat
-      border: 1px solid getColor(colorx)
-      background: transparent !important
-      color: getColor(colorx)
-      .bili-button--text
-        &.isActive
-          color: rgb(255, 255, 255) !important
-      &:hover
-        background: getColor(colorx, .08) !important
+    &.bili-button-filled {
+      background: getColor(colorx) !important;
+
+      &:hover {
+        box-shadow: 0px 8px 25px -8px getColor(colorx);
+      }
+    }
+
+    // type border & flat
+    &.bili-button-border, &.bili-button-flat {
+      border: 1px solid getColor(colorx);
+      background: transparent !important;
+      color: getColor(colorx);
+
+      .bili-button--text {
+        &.isActive {
+          color: rgb(255, 255, 255) !important;
+        }
+      }
+
+      &:hover {
+        background: getColor(colorx, 0.08) !important;
+      }
+    }
+
+    &.bili-button-line { // type line
+      color: getColor(colorx);
+      border-color: getColor(colorx, 0.2);
+
+      .bili-button-linex {
+        background: getColor(colorx);
+      }
+    }
+  }
+}

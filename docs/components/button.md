@@ -3,27 +3,27 @@ API:
   - name: type
     type: String
     parameters: filled, border, flat, line, gradient, relief
-    description: The type of button to use
+    description: 特效不同的按钮
     default: filled
   - name: color
     type: String
     parameters: primary, warning, error, disbaled, RGB, HEX
-    description: Change the color of the button
+    description: 按钮的颜色
     default: primary
   - name: text-color
     type: String
     parameters: RGB, HEX
-    description: Change the font color of the button
+    description: 单独控制按钮的文字颜色
     default: null
   - name: line-origin
     type: String
-    parameters: null
-    description: Determines the output of the line on the button (line)
+    parameters: left, center, right
+    description: 线条出现的方向
     default: center
   - name: line-position
     type: String
-    parameters: null
-    description: Determine if the button (line) has the line up or down
+    parameters: top, bottom
+    description: 线条出现在上面还是下面
     default: center
   - name: gradient-direction
     type: String
@@ -177,6 +177,57 @@ API:
 <bili-button color="#6cf" type="flat">#6cf</bili-button>
 <bili-button color="rgb(134, 4, 98)" type="flat">rgb</bili-button>
 <bili-button color="primary" type="flat">
+  <div class="icon-box">
+    <span class="iconfont icon-wucan"></span>
+    <span>拉面</span>
+  </div>
+</bili-button>
+```
+
+</div>
+</vuecode>
+</box>
+
+<box>
+
+## Line
+
+`type=line` 只有上或下边框的透明背景按钮，hover 时边框出现动画
+
+`left-position` 控制动画的起点
+
+`line-position` 控制边框的位置
+
+<vuecode md center>
+<div slot="demo">
+<bili-button color="primary" type="line">primary</bili-button>
+<bili-button color="warning" line-position="top" type="line"
+  >warning</bili-button
+>
+<bili-button color="error" left-position="left" type="line">error</bili-button>
+<bili-button disabled color="disbaled" type="line">disabled</bili-button>
+<bili-button color="#6cf" left-position="right" type="line">#6cf</bili-button>
+<bili-button color="rgb(134, 4, 98)" type="line">rgb</bili-button>
+<bili-button color="primary" type="line">
+  <div class="icon-box">
+    <span class="iconfont icon-wucan"></span>
+    <span>拉面</span>
+  </div>
+</bili-button>
+</div>
+
+<div slot="code">
+
+```html
+<bili-button color="primary" type="line">primary</bili-button>
+<bili-button color="warning" line-position="top" type="line"
+  >warning</bili-button
+>
+<bili-button color="error" left-position="left" type="line">error</bili-button>
+<bili-button disabled color="disbaled" type="line">disabled</bili-button>
+<bili-button color="#6cf" left-position="right" type="line">#6cf</bili-button>
+<bili-button color="rgb(134, 4, 98)" type="line">rgb</bili-button>
+<bili-button color="primary" type="line">
   <div class="icon-box">
     <span class="iconfont icon-wucan"></span>
     <span>拉面</span>

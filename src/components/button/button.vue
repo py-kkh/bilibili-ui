@@ -13,7 +13,7 @@
     v-bind="$attrs"
     v-on="listeners"
   >
-    <span v-if="$slots.default" class="bili-button-text-s">
+    <span v-if="$slots.default" class="bili-button--text">
       <slot/>
     </span>
 
@@ -70,9 +70,9 @@ export default {
     },
     // type == line 时 active 样式出现的位置 上中下
     linePosition: {
-      default: 'center',
+      default: 'bottom',
       validator(value) {
-        return oneOf(value, ['left', 'center', 'right'])
+        return oneOf(value, ['top', 'bottom'])
       }
     }
   },
@@ -125,6 +125,15 @@ export default {
           )}`,
           background: this.isHover ? getColor(this.color, 0.1) : 'transparent',
           color: getColor(this.textColor, 1) || getColor(this.color, 1)
+        }
+      }
+
+      if (this.type === 'line') {
+        return {
+          color: getColor(this.textColor, 1) || getColor(this.color, 1),
+          borderBottomWidth: this.linePosition == 'bottom' ? `2px` : null,
+          borderColor: `${getColor(this.color, 0.2)}`,
+          borderTopWidth: this.linePosition == 'top' ? `2px` : null
         }
       }
       return ret

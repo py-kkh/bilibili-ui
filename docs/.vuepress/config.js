@@ -32,16 +32,6 @@ module.exports = {
     nav: [{ text: 'Home', link: '/' }],
     sidebar: [
       {
-        title: 'Layout',
-        collapsable: false,
-        children: ['/layout/']
-      },
-      {
-        title: 'Theme',
-        collapsable: false,
-        children: ['/theme/', '/theme/icon']
-      },
-      {
         title: 'Components',
         collapsable: false,
         children: [
