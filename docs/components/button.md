@@ -2,7 +2,7 @@
 API:
   - name: type
     type: String
-    parameters: filled, border, flat, line, gradient, relief
+    parameters: filled, border, flat, line, solid
     description: 特效不同的按钮
     default: filled
   - name: color
@@ -24,37 +24,17 @@ API:
     type: String
     parameters: top, bottom
     description: 线条出现在上面还是下面
-    default: center
-  - name: gradient-direction
-    type: String
-    parameters: null
-    description: Determine the angle of the gradient on the button
-    default: 30 deg
-  - name: gradient-color-secondary
-    type: String
-    parameters: null
-    description: Change the secondary color on the button (gradient)
-    default: primary
+    default: bottom
   - name: radius
     type: Boolean
-    parameters: null
-    description: Change button radius to circle
+    parameters: true, false
+    description: 是否是圆或椭圆
     default: false
-  - name: to
-    type: String | Object
-    parameters: null
-    description: Added router push navigation to button
-    default: false
-  - name: href
-    type: String | Object
-    parameters: null
-    description: Added href property to button
+  - name: size
+    type: String
+    parameters: small, large
+    description: 按钮尺寸
     default: null
-  - name: target
-    type: Boolean
-    parameters: null
-    description: Presence or absence of target property
-    default: false
 ---
 
 # Buttons
@@ -228,6 +208,92 @@ API:
 <bili-button color="#6cf" left-position="right" type="line">#6cf</bili-button>
 <bili-button color="rgb(134, 4, 98)" type="line">rgb</bili-button>
 <bili-button color="primary" type="line">
+  <div class="icon-box">
+    <span class="iconfont icon-wucan"></span>
+    <span>拉面</span>
+  </div>
+</bili-button>
+```
+
+</div>
+</vuecode>
+</box>
+
+<box>
+
+## solid
+
+`type=line` 浮雕风格的按钮
+
+<vuecode md center>
+<div slot="demo">
+   <bili-button color="primary" type="solid">primary</bili-button>
+    <bili-button color="warning" type="solid">warning</bili-button>
+    <bili-button color="error" type="solid">error</bili-button>
+    <bili-button disabled color="disbaled" type="solid">disabled</bili-button>
+    <bili-button color="#6cf" type="solid">#6cf</bili-button>
+    <bili-button color="rgb(134, 4, 98)" type="solid">rgb</bili-button>
+    <bili-button color="primary" type="solid">
+      <div class="icon-box">
+        <span class="iconfont icon-wucan"></span>
+        <span>拉面</span>
+      </div>
+    </bili-button>
+</div>
+
+<div slot="code">
+
+```html
+<bili-button color="primary" type="solid">primary</bili-button>
+<bili-button color="warning" type="solid">warning</bili-button>
+<bili-button color="error" type="solid">error</bili-button>
+<bili-button disabled color="disbaled" type="solid">disabled</bili-button>
+<bili-button color="#6cf" type="solid">#6cf</bili-button>
+<bili-button color="rgb(134, 4, 98)" type="solid">rgb</bili-button>
+<bili-button color="primary" type="solid">
+  <div class="icon-box">
+    <span class="iconfont icon-wucan"></span>
+    <span>拉面</span>
+  </div>
+</bili-button>
+```
+
+</div>
+</vuecode>
+</box>
+
+<box>
+
+## size & radius
+
+内置 small large ，可输入 xxpx
+
+圆形按钮
+
+<vuecode md center>
+<div slot="demo">
+<bili-button color="primary" size="small">primary</bili-button>
+    <bili-button color="warning">warning</bili-button>
+    <bili-button color="error" size="large">error</bili-button>
+    <bili-button color="#6cf" size="100px">#6cf</bili-button>
+    <bili-button color="rgb(134, 4, 98)" size="50px" radius>rgb</bili-button>
+    <bili-button color="primary" radius>
+      <div class="icon-box">
+        <span class="iconfont icon-wucan"></span>
+        <span>拉面</span>
+      </div>
+    </bili-button>
+</div>
+
+<div slot="code">
+
+```html
+<bili-button color="primary" size="small">primary</bili-button>
+<bili-button color="warning">warning</bili-button>
+<bili-button color="error" size="large">error</bili-button>
+<bili-button color="#6cf" size="100px">#6cf</bili-button>
+<bili-button color="rgb(134, 4, 98)" size="50px" radius>rgb</bili-button>
+<bili-button color="primary" radius>
   <div class="icon-box">
     <span class="iconfont icon-wucan"></span>
     <span>拉面</span>

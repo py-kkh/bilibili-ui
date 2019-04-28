@@ -13,6 +13,13 @@
     v-bind="$attrs"
     v-on="listeners"
   >
+    <!-- 点击时的背景遮罩  -->
+    <span
+      v-if="type === 'filled' || type === 'border' || type === 'flat'"
+      ref="backgroundx"
+      :style="stylesBackGround"
+      class="bili-button-backgroundx bili-button--background"
+    ></span>
     <span v-if="$slots.default" class="bili-button--text">
       <slot/>
     </span>
@@ -22,7 +29,7 @@
   </button>
 </template>
 <script>
-import { oneOf, getColor } from '../../utils/helper'
+import { oneOf, getColor, darken } from '../../utils/helper'
 const prefixCls = 'bili-button'
 export default {
   name: 'BiliButton',
@@ -31,14 +38,7 @@ export default {
     type: {
       default: 'border',
       validator(value) {
-        return oneOf(value, [
-          'filled',
-          'border',
-          'flat',
-          'line',
-          'gradient',
-          'relief'
-        ])
+        return oneOf(value, ['filled', 'border', 'flat', 'line', 'solid'])
       }
     },
     // 按钮主题
@@ -79,7 +79,13 @@ export default {
   data() {
     return {
       isActive: false,
-      isHover: false
+      isHover: false,
+      opacity: 1,
+      leftBackgorund: 20,
+      topBackgorund: 20,
+      radio: 0,
+      time: 0.3,
+      timeOpacity: 0.3
     }
   },
   computed: {
@@ -87,10 +93,10 @@ export default {
     listeners() {
       return {
         ...this.$listeners,
+        click: event => this.clickButton(event),
+        blur: event => this.blurButton(event),
         mouseover: event => this.mouseoverx(event),
         mouseout: event => this.mouseoutx(event)
-        // click: event => this.clickButton(event),
-        // blur: event => this.blurButton(event),
       }
     },
     // class
@@ -136,6 +142,15 @@ export default {
           borderTopWidth: this.linePosition == 'top' ? `2px` : null
         }
       }
+
+      if (this.type === 'solid') {
+        let color = getColor(this.color, 1)
+        return {
+          background: getColor(this.color, 1),
+          boxShadow: `0 3px 0 0 ${darken(color, -0.4)}`
+        }
+      }
+
       return ret
     },
     styleLine() {
@@ -155,6 +170,25 @@ export default {
         transform: leftPosition == '50%' ? 'translate(-50%)' : null
       }
       return styles
+    },
+    stylesBackGround() {
+      let styles = {
+        background:
+          this.type === 'flat' || this.type === 'border'
+            ? getColor(this.color, 1, false)
+            : null,
+        opacity: this.opacity,
+        left: `${this.leftBackgorund}px`,
+        top: `${this.topBackgorund}px`,
+        borderRadius: this.radius ? '50%' : '0px',
+        width: `${this.radio}px`,
+        height: `${this.radio}px`,
+        transition: `width ${this.time}s ease, height ${
+          this.time
+        }s ease, opacity ${this.timeOpacity}s ease`
+      }
+
+      return styles
     }
   },
   mounted() {},
@@ -166,6 +200,60 @@ export default {
     mouseoutx(event) {
       this.$emit('mouseout', event)
       this.isHover = false
+    },
+    blurButton(event) {
+      this.$emit('blur', event)
+      if (this.type === 'border' || this.type === 'flat') {
+        this.opacity = 0
+        setTimeout(() => {
+          this.radio = 0
+        }, 150)
+        this.isActive = false
+      }
+    },
+
+    clickButton(event) {
+      this.$emit('click', event)
+      if (this.isActive) {
+        return
+      }
+      this.isActive = true
+      let btn = this.$refs.btn
+      let xEvent = event.offsetX
+      let yEvent = event.offsetY
+      let radio = btn.clientWidth * 3
+      this.time =
+        btn.clientWidth /
+        (btn.clientWidth +
+          (this.type === 'border' || this.type === 'flat' ? 70 : 20))
+      if (this.type === 'filled') {
+        this.timeOpacity = this.time
+      }
+
+      if (event.srcElement ? event.srcElement != btn : false) {
+        xEvent += event.target.offsetLeft
+        yEvent += event.target.offsetTop
+      }
+      this.leftBackgorund = xEvent
+      this.topBackgorund = yEvent
+      this.radio = radio
+      if (this.type === 'filled') {
+        this.opacity = 0
+      } else {
+        this.opacity = 1
+      }
+
+      if (this.type === 'filled') {
+        setTimeout(() => {
+          this.time = this.timeOpacity = this.radio = 0
+          this.opacity = 1
+          this.isActive = false
+        }, this.time * 1100)
+      } else {
+        setTimeout(() => {
+          this.timeOpacity = 0.15
+        }, this.time * 1100)
+      }
     }
   }
 }

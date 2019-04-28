@@ -1,15 +1,11 @@
 /* button */
-$bili-btn--padding-x ?= 10px;
-$bili-btn--padding-y ?= 20px;
-$bili-btn--border-radius ?= 5px;
-
 .bili-button {
   position: relative;
   overflow: hidden;
   padding: 10px;
   border: 0px;
   border-radius: $bili-radius;
-  transition: all 0.2s ease;
+  transition: $bili-transition;
   background: transparent;
   color: #fff;
   cursor: pointer;
@@ -23,12 +19,40 @@ $bili-btn--border-radius ?= 5px;
   &.bili-radius {
     border-radius: 50%;
   }
+
+  &.large {
+    padding: 12px;
+    font-size: 1em;
+  }
+
+  &.small {
+    padding: 7px;
+    font-size: 0.7em;
+  }
+
+  &:hover {
+    transform: translate(0, -2px);
+  }
+
+  &:active {
+    transform: translate(0, 0px);
+  }
+}
+
+.bili-button--background {
+  border-radius: 50%;
+  width: 10px;
+  position: absolute;
+  height: 10px;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  box-shadow: inset 0px 0px 60px 0px rgba(255, 255, 255, 0.5);
 }
 
 .bili-button--text {
   position: relative;
   display: inline-block;
-  transition: $bili-transition;
 }
 
 .bili-button-filled {
@@ -38,7 +62,7 @@ $bili-btn--border-radius ?= 5px;
 }
 
 .bili-button-border {
-  padding: 9px;
+  // padding: 9px;
 }
 
 .bili-button-flat { // type flat
@@ -60,7 +84,10 @@ $bili-btn--border-radius ?= 5px;
   border-style: solid;
 
   &:hover {
+    transform: translate(0, 0);
+
     .bili-button--text {
+      transition: $bili-transition;
       transform: translate(0, 2px);
     }
 
@@ -75,7 +102,16 @@ $bili-btn--border-radius ?= 5px;
     bottom: -2px;
     width: 0%;
     height: 2px;
-    transition: all 0.2s ease;
+    transition: $bili-transition;
+  }
+}
+
+.bili-button-solid {
+  padding: 10px;
+
+  &:active {
+    transform: translate(0, 3px);
+    box-shadow: none !important;
   }
 }
 
@@ -96,10 +132,9 @@ for colorx, i in $bili-colors {
       background: transparent !important;
       color: getColor(colorx);
 
-      .bili-button--text {
-        &.isActive {
-          color: rgb(255, 255, 255) !important;
-        }
+      .bili-button-backgroundx {
+        background: getColor(colorx);
+        box-shadow: inset 0px 0px 60px 0px getColor(colorx);
       }
 
       &:hover {
@@ -114,6 +149,11 @@ for colorx, i in $bili-colors {
       .bili-button-linex {
         background: getColor(colorx);
       }
+    }
+
+    &.bili-button-solid {
+      background: getColor(colorx, 1);
+      box-shadow: 0 -3px 0 0 rgba(0, 0, 0, 0.2) inset;
     }
   }
 }
