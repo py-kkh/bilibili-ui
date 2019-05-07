@@ -28,19 +28,17 @@
       </p>
     </div>
     <slot name="bottom"/>
-    <Footer/>
   </div>
 </template>
 
 <script>
 import api from './api.vue'
 import easing from './easing.js'
-import Footer from './Footer.vue'
 import OutboundLink from './OutboundLink.vue'
 import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
 
 export default {
-  components: { OutboundLink, api, Footer },
+  components: { OutboundLink, api },
   props: ['sidebarItems'],
   methods: {
     replaceH1() {

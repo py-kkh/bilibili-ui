@@ -35,7 +35,8 @@ module.exports = {
         title: 'Components',
         collapsable: false,
         children: [
-          '/components/button'
+          '/components/button',
+          '/components/date-picker'
           /*New Component*/
         ]
       }

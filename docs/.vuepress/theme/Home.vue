@@ -93,8 +93,6 @@
 
   </div>
 
-
-      <Footer/>
   </div>
   </div>
 
@@ -106,9 +104,8 @@
 
 import trofeos from './trofeos.vue'
 import NavLink from './NavLink.vue'
-import Footer from './Footer.vue'
 export default {
-  components: { NavLink, Footer, trofeos },
+  components: { NavLink, trofeos },
   data(){
     return {
       star:0,
@@ -424,11 +421,6 @@ export default {
     .con-text-feature
       max-width: 500px;
       padding: 30px;
-  .footer
-    padding 2.5rem
-    border-top 1px solid $borderColor
-    text-align center
-    color lighten($textColor, 25%)
 
 @media only screen and (max-width: 1100px)
   .con-home
@@ -467,9 +459,6 @@ export default {
           padding 0
           &:nth-child(odd)
             order 0
-  .con-home
-    footer
-      margin-top 200px
 
 
 
@@ -509,11 +498,7 @@ export default {
       .feature
         h2
           font-size 1.25rem
-  footer
-    .bosque
-      top 60%
-      transform scale(1.5)
-      right: 15% !important
+  
 
 
 
