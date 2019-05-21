@@ -2,13 +2,7 @@
 
 faker bilibili style
 
-## before contribution
-
-please create new issue
-
 ## about docs
-
-务必**用 yarn 下载依赖**
 
 vuepress script in package.json
 

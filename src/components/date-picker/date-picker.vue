@@ -1,16 +1,31 @@
 <template>
-  <div></div>
+  <div class="bili-date-picker-wrapper">
+    dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+    <div ref="textWrap" class="text-wrap">我是选择框</div>
+    <div :class="classes" :style="styles">
+      2
+      <br>22
+      <br>22
+      <br>22
+      <br>22
+      <br>22
+      <br>2
+    </div>
+  </div>
 </template>
 <script>
 import { oneOf, getColor } from '../../utils/helper'
 const prefixCls = 'bili-date-picker'
+
+const containerWidth = 340
+const containerHeight = 400
+
 export default {
   name: 'BiliDatePicker',
   /**
    * func
    * onChange
    * onCancel
-   * format
    */
   props: {
     date: {
@@ -42,11 +57,11 @@ export default {
       default: () => []
     },
     yearStart: {
-      type: number,
+      type: Number,
       default: 1917
     },
     yearEnd: {
-      type: number,
+      type: Number,
       default: 2200
     },
     format: {
@@ -55,28 +70,69 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      // 日历浮层的定位
+      position: {},
+      isShow: true
+    }
   },
   computed: {
-    // 透传事件
     listeners() {
       return {
-        ...this.$listeners,
-        click: event => this.clickButton(event)
+        ...this.$listeners
+      }
+    },
+    styles() {
+      return {
+        left: this.position.left + 'px',
+        top: this.position.top + 'px'
       }
     },
     // class
     classes() {
-      return [
-        `${prefixCls}`,
-        {
-          [`${prefixCls}-${this.color}`]: !!this.color,
-          [`${prefixCls}-${this.size}`]: !!this.size
-        }
-      ]
+      return [`${prefixCls}`]
     }
   },
-  mounted() {},
-  methods: {}
+  created() {},
+  mounted() {
+    window.document.addEventListener('scroll', this.handleScroll, true)
+    window.addEventListener('resize', this.handleScroll, true)
+    this.position = this.positionIncubator(this.$refs.textWrap)
+  },
+  beforeDestroy() {
+    window.document.removeEventListener('scroll', this.handleScroll, true)
+    window.removeEventListener('resize', this.handleScroll, true)
+  },
+  methods: {
+    handleScroll(e) {
+      if (!this.isShow) return
+
+      const dom = e.target
+      if (/select-container/g.test(dom.className)) {
+        return
+      }
+
+      this.position = this.positionIncubator(this.$refs.textWrap)
+    },
+    positionIncubator(node) {
+      if (!node) return null
+      const rect = node.getBoundingClientRect()
+      console.log('----------------')
+      console.log(rect)
+
+      const position = {}
+      if (rect.left + containerWidth >= window.innerWidth) {
+        position.right = 0
+      } else {
+        position.left = rect.left
+      }
+      if (rect.bottom + containerHeight >= window.innerHeight) {
+        position.top = rect.bottom - containerHeight
+      } else {
+        position.top = rect.bottom
+      }
+      return position
+    }
+  }
 }
 </script>

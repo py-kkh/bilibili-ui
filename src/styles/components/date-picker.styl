@@ -1,0 +1,28 @@
+$z-index-picker ?= 1024;
+$container-width ?= 320px;
+$date-picker-display-height ?= 58px;
+$date-picker-center-padding ?= 32px;
+$date-picker-days-row-height ?= 28px;
+$date-picker-duration-time-day ?= 400ms;
+$date-picker-duration-time-enter ?= 400ms;
+$date-picker-duration-time-leave ?= 200ms;
+
+.bili-date-picker-wrapper {
+  .text-wrap {
+    display: inline-block;
+    max-width: 300px;
+  }
+
+  .bili-date-picker {
+    overflow: hidden;
+    position: fixed;
+    width: $container-width;
+    margin-top: 4px;
+    padding: 18px 6px 6px 6px;
+    border: 1px solid getColor(primary);
+    // border-color: getColor($bili-theme-color);
+    border-radius: 4px;
+    background: #fff;
+    z-index: $z-index-picker;
+  }
+}

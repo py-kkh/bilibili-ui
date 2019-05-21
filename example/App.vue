@@ -27,13 +27,18 @@ nav {
 .v-link-active {
   color: #bbb;
 }
+.split-box {
+  padding: 0 15px;
+}
 </style>
 <template>
   <div class="container">
     <nav>
       <ul>
         <li>
-          <router-link to="/button">Button</router-link>
+          <router-link to="/button">button</router-link>
+          <span class="split-box">|</span>
+          <router-link to="/date-picker">date-picker</router-link>
         </li>
       </ul>
     </nav>

@@ -17,6 +17,10 @@ const router = new VueRouter({
     {
       path: '/button',
       component: resolve => require(['./routers/button.vue'], resolve)
+    },
+    {
+      path: '/date-picker',
+      component: resolve => require(['./routers/date-picker.vue'], resolve)
     }
   ]
 })
