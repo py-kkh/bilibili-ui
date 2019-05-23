@@ -8,6 +8,14 @@ $date-picker-duration-time-enter ?= 400ms;
 $date-picker-duration-time-leave ?= 200ms;
 
 .bili-date-picker-wrapper {
+  .fade-enter-active, .fade-leave-active {
+    transition: $bili-transition;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+
   .text-wrap {
     display: inline-block;
     max-width: 300px;

@@ -1,16 +1,17 @@
 <template>
   <div class="bili-date-picker-wrapper">
-    dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-    <div ref="textWrap" class="text-wrap">我是选择框</div>
-    <div :class="classes" :style="styles">
-      2
-      <br>22
-      <br>22
-      <br>22
-      <br>22
-      <br>22
-      <br>2
-    </div>
+    <div ref="textWrap" class="text-wrap" @click="clickTextWrap">点我开关日历</div>
+    <transition name="fade">
+      <div v-if="isShow" :class="classes" :style="styles">
+        2
+        <br>22
+        <br>22
+        <br>22
+        <br>22
+        <br>22
+        <br>2
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -104,6 +105,9 @@ export default {
     window.removeEventListener('resize', this.handleScroll, true)
   },
   methods: {
+    clickTextWrap() {
+      this.isShow = !this.isShow
+    },
     handleScroll(e) {
       if (!this.isShow) return
 
