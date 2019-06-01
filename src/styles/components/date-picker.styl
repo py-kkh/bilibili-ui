@@ -33,4 +33,81 @@ $date-picker-duration-time-leave ?= 200ms;
     background: #fff;
     z-index: $z-index-picker;
   }
+
+  .bili-date-picker-year-month {
+    display: flex;
+    align-items: center;
+    padding: 32px 0;
+  }
+
+  .bili-date-picker-year-month-pre, .bili-date-picker-year-month-next {
+    font-size: 24px;
+    // width: 10%;
+  }
+
+  .bili-date-picker-year-month-next {
+    transform: rotateY(180deg);
+    display: inline-block;
+  }
+
+  .bili-date-picker-year-month-select {
+    width: 80%;
+    display: flex;
+  }
+
+  .bili-date-picker-year-month-year, .bili-date-picker-year-month-month {
+    position: relative;
+    width: 45%;
+  }
+
+  .bili-date-picker-year-month-v-line {
+    margin: 10px 8px 8px 0;
+    width: 2px;
+    height: 12px;
+    background-color: #aaa;
+  }
+
+  .bili-date-picker-select {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .bili-date-picker-select-open {
+    position: absolute;
+    overflow: auto;
+    height: 84px;
+    top: -32px;
+
+    .bili-date-picker-select-option {
+      font-size: 14px;
+      padding: 4px 0;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: getColor(primary, 0.6);
+      }
+    }
+
+    .bili-date-picker-select-option-current {
+      background-color: getColor(primary, 0.6);
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      background: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: getColor(primary);
+    }
+  }
+
+  .bili-date-picker-select-option {
+    text-align: center;
+  }
+
+  .bili-date-picker-select-close {
+    margin-top: 8px;
+  }
 }

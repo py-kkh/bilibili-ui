@@ -3,8 +3,15 @@
     <div ref="textWrap" class="text-wrap" @click="clickTextWrap">点我开关日历</div>
     <transition name="fade">
       <div v-if="isShow" :class="classes" :style="styles">
-        2
-        <br>22
+        显示选中的年月日，等
+        <br>
+        <YearMonth
+          :date="innerDate"
+          :year-start="yearStart"
+          :year-end="yearEnd"
+          @handleChange="handleChangeDate"
+        ></YearMonth>
+
         <br>22
         <br>22
         <br>22
@@ -16,6 +23,16 @@
 </template>
 <script>
 import { oneOf, getColor } from '../../utils/helper'
+import {
+  arrayWith7Strings,
+  arrayWith12Strings,
+  dateOrStringOrNull,
+  normalizeDate,
+  dateToString,
+  nop
+} from './utils'
+import YearMonth from './year-month.vue'
+
 const prefixCls = 'bili-date-picker'
 
 const containerWidth = 340
@@ -23,6 +40,9 @@ const containerHeight = 400
 
 export default {
   name: 'BiliDatePicker',
+  components: {
+    YearMonth
+  },
   /**
    * func
    * onChange
@@ -74,7 +94,9 @@ export default {
     return {
       // 日历浮层的定位
       position: {},
-      isShow: true
+      isShow: true,
+      dateV: normalizeDate(this.date),
+      innerDate: normalizeDate(this.date) || normalizeDate(new Date())
     }
   },
   computed: {
@@ -105,6 +127,17 @@ export default {
     window.removeEventListener('resize', this.handleScroll, true)
   },
   methods: {
+    handleChangeDate(d, ok = false) {
+      if (ok) {
+        // this.handleConfirm(d);
+      } else {
+        console.log('--------d--------')
+        console.log(d)
+        console.log(normalizeDate(d))
+
+        this.innerDate = normalizeDate(d)
+      }
+    },
     clickTextWrap() {
       this.isShow = !this.isShow
     },
@@ -121,8 +154,6 @@ export default {
     positionIncubator(node) {
       if (!node) return null
       const rect = node.getBoundingClientRect()
-      console.log('----------------')
-      console.log(rect)
 
       const position = {}
       if (rect.left + containerWidth >= window.innerWidth) {

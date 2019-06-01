@@ -9,7 +9,7 @@
     <br>
 
     <br>
-    <bili-date-picker></bili-date-picker>
+    <bili-date-picker :date="date"></bili-date-picker>
     <div style="width:3000px;height: 3000px"></div>
     <br>
   </div>
@@ -18,7 +18,9 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      date: new Date().toDateString()
+    }
   },
   methods: {}
 }
